@@ -1,8 +1,8 @@
 #pragma once
 
 enum class GameState {PLAY, EXIT};
-
-class Game;
+class Player;
+class Level;
 class MainGame
 {
 public:
@@ -14,8 +14,8 @@ private:
     void Init();
     void GameLoop();
 
-
-    Game* m_game;
+    Player* m_player;
+    Level* m_level;
     GameState m_gameState;
 };
 

@@ -28,12 +28,13 @@ bool Level::LoadLevel(const std::string& filePath)
 
 void Level::Draw()
 {
-    if (m_needUpdate != false)
-    {
-        for (int i = 0; i < m_levelData.size(); i++)
-            std::cout << m_levelData[i] << std::endl;
-        m_needUpdate = false;
-    }
+    // Print empty strings
+    std::string str(30, '\n');
+    std::cout << str;
+
+    // Print map
+    for (int i = 0; i < m_levelData.size(); i++)
+        std::cout << m_levelData[i] << std::endl;
 }
 
 void Level::SetPlayer(Player* player)
@@ -46,4 +47,9 @@ void Level::SetPlayer(Player* player)
                 player->SetPosition(j, i);
         }
     }
+}
+
+void Level::SetCharAt(int x, int y, char c)
+{
+    m_levelData[y][x] = c;
 }

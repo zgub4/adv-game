@@ -1,5 +1,5 @@
 #pragma once
-
+#include "Level.h"
 
 struct vec2
 {
@@ -12,7 +12,7 @@ class Player
 public:
     Player();
     ~Player();
-    void Update();
+    void Update(Level* level);
     void SetPosition(int x, int y);
 
 private:
