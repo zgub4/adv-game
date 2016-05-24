@@ -17,21 +17,38 @@ void Player::Update(Level* level)
     switch (move)
     {
     case 'w':
+        if (level->GetCharAt(m_position.x, m_position.y - 1) == '#')
+        {
+            return;
+        }
         level->SetCharAt(m_position.x, m_position.y, '.');
         m_position.y--;
         level->SetCharAt(m_position.x, m_position.y, '@');
         break;
     case 'a':
+        if (level->GetCharAt(m_position.x-1, m_position.y) == '#')
+        {
+            return;
+        }
         level->SetCharAt(m_position.x, m_position.y, '.');
         m_position.x--;
         level->SetCharAt(m_position.x, m_position.y, '@');
         break;
     case 'd':
-        level->SetCharAt(m_position.x, m_position.y, '.');
+        if (level->GetCharAt(m_position.x + 1, m_position.y) == '#')
+        {
+            return;
+        }
+
+       level->SetCharAt(m_position.x, m_position.y, '.');
         m_position.x++;
         level->SetCharAt(m_position.x, m_position.y, '@');
         break;
     case 's':
+        if (level->GetCharAt(m_position.x, m_position.y+1) == '#')
+    {
+        return;
+    }
         level->SetCharAt(m_position.x, m_position.y, '.');
         m_position.y++;
         level->SetCharAt(m_position.x, m_position.y, '@');

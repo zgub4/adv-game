@@ -3,8 +3,11 @@
 
 #include <iostream>
 #include "Player.h"
+#include "Enemy.h"
+#include "Golem.h"
+#include "Troll.h"
 
-Level::Level() : m_needUpdate(true)
+Level::Level()
 {
 }
 
@@ -45,6 +48,35 @@ void Level::SetPlayer(Player* player)
         {
             if (m_levelData[i][j] == '@')
                 player->SetPosition(j, i);
+        }
+    }
+}
+
+void Level::SetEnemies(std::vector <Enemy*>& enemies)
+{
+    for (int i = 0; i < m_levelData.size(); i++)
+    {
+        for (int j = 0; j < m_levelData[i].size(); j++)
+        {
+            char a = m_levelData[i][j];
+            Golem* g = nullptr;
+
+            switch (a)
+            {
+            case 'g':
+                g = new Golem();
+                g->SetName("Golem");
+                g->SetPosition(j, i);
+                std::cout << j << " " << i << std::endl;
+                enemies.push_back(g);
+                break;
+            case 't':
+                Troll* t = new Troll();
+                t->SetName("Troll");
+                t->SetPosition(j, i);
+                enemies.push_back(t);
+                break;
+            }
         }
     }
 }

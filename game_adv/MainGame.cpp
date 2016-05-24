@@ -1,5 +1,6 @@
 #include "MainGame.h"
 #include "Player.h"
+#include <string>
 
 MainGame::MainGame() : m_gameState(GameState::PLAY)
 {
@@ -23,6 +24,8 @@ void MainGame::Init()
     m_level->LoadLevel("levels/level1.txt");
     m_player = new Player();
     m_level->SetPlayer(m_player);
+    
+    m_level->SetEnemies(m_enemies);
 }
 
 void MainGame::GameLoop()
