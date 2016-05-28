@@ -12,9 +12,13 @@ public:
 
     bool LoadLevel(const std::string& filePath);
     void Draw();
+
+    // Setters
     void SetPlayer(Player* player);
     void SetEnemies(std::vector <Enemy*>& enemies);
     void SetCharAt(int x, int y, char c);
+
+    // Getters
     char GetCharAt(int x, int y) { return m_levelData[y][x]; }
 
 private:

@@ -27,17 +27,18 @@ bool Level::LoadLevel(const std::string& filePath)
     std::string buff; // Buffor for holding strings from file and push them to level data
     while (std::getline(file, buff))
         m_levelData.push_back(buff);
+    return true;
 }
 
 void Level::Draw()
 {
     // Print empty strings
-    std::string str(30, '\n');
-    std::cout << str;
+    static std::string str(10, '\n');
+    printf("%s", str.c_str());
 
     // Print map
     for (int i = 0; i < m_levelData.size(); i++)
-        std::cout << m_levelData[i] << std::endl;
+        printf("%s\n", m_levelData[i].c_str());
 }
 
 void Level::SetPlayer(Player* player)
@@ -58,23 +59,24 @@ void Level::SetEnemies(std::vector <Enemy*>& enemies)
     {
         for (int j = 0; j < m_levelData[i].size(); j++)
         {
-            char a = m_levelData[i][j];
-            Golem* g = nullptr;
+            char c = m_levelData[i][j];
+            Enemy* e = nullptr;
 
-            switch (a)
+            switch (c)
             {
             case 'g':
-                g = new Golem();
-                g->SetName("Golem");
-                g->SetPosition(j, i);
+                e = new Golem();
+                e->SetName("Golem");
+                e->SetPosition(j, i);
                 std::cout << j << " " << i << std::endl;
-                enemies.push_back(g);
+                enemies.push_back(e);
                 break;
             case 't':
-                Troll* t = new Troll();
-                t->SetName("Troll");
-                t->SetPosition(j, i);
-                enemies.push_back(t);
+                e = new Troll();
+                e->SetName("Troll");
+                e->SetPosition(j, i);
+                std::cout << j << " " << i << std::endl;
+                enemies.push_back(e);
                 break;
             }
         }
